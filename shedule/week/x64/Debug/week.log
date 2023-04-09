@@ -1,0 +1,3 @@
+﻿  week.cpp
+C:\Users\goodb\source\repos\week\week\week.cpp(59): warning C4717: main: рекурсия на всех путях выполнения, функция вызовет переполнение стека
+  week.vcxproj -> C:\Users\goodb\source\repos\week\x64\Debug\week.exe
