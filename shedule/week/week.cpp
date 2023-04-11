@@ -1,7 +1,6 @@
 ﻿#include "Header.h"
-
 //////////////////////////////////////////
-
+void removeDay();
 void checkday();
 void swichDay();
 void editionD();
@@ -19,7 +18,6 @@ void mainMenu() {//главное меню выбора
 
 int main()
 {
-	
 	setlocale(LC_ALL, "rus");
 	mainMenu();
 	switch (menuChoose)
@@ -58,19 +56,31 @@ void editionD() {//запись без выбора дня
 		system("cls");
 		main();
 }	
-void editionW() {//запись c выбором дня
+void editionW() {//редактирование c выбором дня
 	SetConsoleCP(1251);
 		cout << " Введите номер дня недели" << endl;
 		cin >> dayWeek;
 		checkday();
-		cout << "************" << endl;
-		cout << " Введите список дел на " << dayWeek << "й день недели" << endl;
-		cout << "> "; cin.get(); getline(cin, arr[dayWeek]);
-		cout << "************" << endl;
-		recording();
-		SetConsoleCP(866);
-		system("cls");
-		main();
+		swichDay();
+		cout << " Удалить расписание(1) Добавить(2)" << endl; cin >> menuChoose;
+		switch (menuChoose)
+		{
+		case 1:
+			removeDay();
+		case 2:
+			cout << " Введите список дел на " << dayWeek << "й день недели" << endl;
+			cout << "> "; cin.get(); getline(cin, arr[dayWeek]);
+			cout << "************" << endl;
+			recording();
+			SetConsoleCP(866);
+			system("cls");
+			main();
+		default:
+			system("cls");
+			main();
+			break;
+		}
+		
 }
 void reading() {// чтение из файлов
 	cout << " Введите номер дня недели" << endl;
@@ -150,4 +160,17 @@ void swichDay() { //выбор дня недели с созданием фай�
 	default:
 		break;
 	}
+}
+void removeDay() {
+	swichDay();
+	remove(path.c_str());
+	if (remove(path.c_str())) {
+		cout << "Файл " << path << " удален\n";
+	}
+	else {
+		cout << "Ошибка удаления файла \n";
+	}
+	system("pause");
+	system("cls");
+	main();
 }
